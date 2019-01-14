@@ -55,9 +55,9 @@ class MyHomePageState extends State<MyHomePage> {
           var jsonProfiles = data.data['response']['profiles'];
           var jsonGroups = data.data['response']['groups'];
           var jsonItems = data.data['response']['items'] as Iterable<dynamic>;
-          var profiles = Map.fromIterable(jsonProfiles,
+          var profiles = Map.fromIterable(jsonProfiles ?? [],
               key: (p) => p['id'] as int, value: (p) => p);
-          var groups = Map.fromIterable(jsonGroups,
+          var groups = Map.fromIterable(jsonGroups ?? [],
               key: (p) => p['id'] as int, value: (p) => p);
 
           var previews = jsonItems
@@ -127,7 +127,14 @@ class _ConversaionScreenState extends State<ConversaionScreen> {
                   profile: profiles[c['from_id']], 
                   group: groups[-c['from_id']]))
                 .toList();
-            return ListView(children: previews);
+            return Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage('images/back.png'))
+              ),
+              child: ListView(children: previews)
+            );
           }));
 }
 
