@@ -44,16 +44,16 @@ class ConversationPreview extends StatelessWidget {
     var conversation = data['conversation'];
     switch (conversation['peer']['type']) {
       case 'user':
-        return Image.network(profile["photo_50"]);
+        return cachedImage(profile["photo_50"]);
 
       case 'chat':
         var photo = conversation['chat_settings']['photo'];
         return photo != null
-            ? Image.network(photo['photo_50'])
+            ? cachedImage(photo['photo_50'])
             : Icon(Icons.chat, size: 50);
 
       case 'group':
-        return Image.network(group['photo_50']);
+        return cachedImage(group['photo_50']);
 
       default:
         return Icon(Icons.portrait, size: 50);

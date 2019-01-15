@@ -81,8 +81,7 @@ class Message extends StatelessWidget {
     if(profile != null) {
       return Container(
           padding: padding,
-          child: Image.network(profile['photo_50'])
-        );
+          child: cachedImage(profile['photo_50']));
     }
 
     return Icon(Icons.chat);

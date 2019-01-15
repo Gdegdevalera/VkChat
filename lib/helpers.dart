@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 Widget padding10(Widget inner) =>
     Container(padding: EdgeInsets.all(10), child: inner);
@@ -26,4 +28,12 @@ String getConversationName(dynamic data, dynamic profile, dynamic group) {
     default:
       return "Unknown";
   }
+}
+
+Widget cachedImage(String url) {
+  return CachedNetworkImage(
+      imageUrl: url,
+      placeholder: new CircularProgressIndicator(),
+      errorWidget: new Icon(Icons.error)
+    );
 }
